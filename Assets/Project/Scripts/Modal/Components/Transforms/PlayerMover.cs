@@ -7,7 +7,6 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     public static PlayerMover instance;
     private Vector3 forceDirection;
-    
     public void PlayerMovement(Vector2 directions)
     {
         ChangeDirection(directions);
@@ -26,6 +25,8 @@ public class PlayerMover : MonoBehaviour
         horizontalVel.y = Values.NeutralFloatValue;
         if (horizontalVel.sqrMagnitude > maxSpeed * maxSpeed)
             rb.linearVelocity = horizontalVel.normalized * maxSpeed + Vector3.up * rb.linearVelocity.y;
+        else
+            rb.linearVelocity = Vector3.zero;
     }
     private void Start() => instance = this;
 }
